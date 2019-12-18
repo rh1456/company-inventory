@@ -80,14 +80,7 @@ namespace company_inventory.Models
     {
       var db = new DatabaseContext();
       var outOfStockItem = db.Items.OrderByDescending(item => item.NumberInStock == 0);
-      return Ok(outOfStockItem);
-    }
-    [HttpGet("{SKUOrder}")]
-    public ActionResult GetItemBySku(int SKU)
-    {
-      var db = new DatabaseContext();
-      var itemSku = db.Items.OrderBy(item => item.SKU);
-      return Ok(itemSku);
+      return Ok(item);
     }
 
   }

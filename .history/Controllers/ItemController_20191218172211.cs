@@ -64,7 +64,7 @@ namespace company_inventory.Models
     {
       var db = new DatabaseContext();
       var item = db.Items.FirstOrDefault(item => item.Id == id);
-      if (item == null)
+      if (student == null)
       {
         return NotFound();
       }
@@ -74,20 +74,6 @@ namespace company_inventory.Models
         db.SaveChanges();
         return Ok();
       }
-    }
-    [HttpGet("{OutOfStock}")]
-    public ActionResult OutOfStock(int NumberInStock)
-    {
-      var db = new DatabaseContext();
-      var outOfStockItem = db.Items.OrderByDescending(item => item.NumberInStock == 0);
-      return Ok(outOfStockItem);
-    }
-    [HttpGet("{SKUOrder}")]
-    public ActionResult GetItemBySku(int SKU)
-    {
-      var db = new DatabaseContext();
-      var itemSku = db.Items.OrderBy(item => item.SKU);
-      return Ok(itemSku);
     }
 
   }
